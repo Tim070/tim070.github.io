@@ -39,15 +39,9 @@ AFRAME.registerComponent("playerjumpcontrols", {
         this.playerentity = document.querySelector("#playerEntity")
         this.el.addEventListener("abuttondown", () =>
         {
-            if(this.playerentity.hasAttribute("gravity")) {
+            if(this.playerentity.hasAttribute("gravity") && this.playerentity.components["gravity"].velocity.y === 0) {
                 this.playerentity.components["gravity"].velocity.y = 7.5;
             }
         })
-    },
-    tick: function ()
-    {
-        // if ((this.playerentity.components["gravity"]).velocity.y !== 0) {
-        //     console.log((this.playerentity.components["gravity"]).velocity);
-        // }
     }
 });
