@@ -23,18 +23,39 @@ AFRAME.registerComponent("gun-code", {
   init: function () {
     this.handOrb = document.querySelector("#thegun");
     this.hand = document.querySelector("#RightHand");
+    this.gunwheel = document.querySelector("#gunWheel");
+    this.bDown = false;
+    this.equipedGun = "0"
+    this.selectedSwitch = "0";
+
+    this.el.addEventListener("bbuttondown", (e) => {
+      this.bDown = true;
+      this.gunwheel.object3D.position.setFromMatrixPosition(this.hand.object3D.matrixWorld);
+      this.gunwheel.components.animation.animation.reverse();
+      this.gunwheel.components.animation.animation.play();
+    });
+    this.el.addEventListener("bbuttonup", (e) => {
+      this.gunwheel.components.animation.animation.reverse();
+      this.gunwheel.components.animation.animation.play();
+      if(this.selectedSwitch !== "" && this.selectedSwitch !== this.equipedGun){
+        this.equipedGun = this.selectedSwitch;
+        this.handOrb.setAttribute("scale", "0." + this.selectedSwitch.toString() + " 0." + this.selectedSwitch.toString() + " 0." + this.selectedSwitch.toString())
+      }
+    });
   },
   tick: function () {
+    this.handOrb.object3D.position.copy(this.hand.object3D.position);
 
-    this.handOrb.object3D.position.set(
-      this.hand.object3D.position.x,
-      this.hand.object3D.position.y,
-      this.hand.object3D.position.z
-    );
     const handRot = this.hand.object3D.rotation;
-    handRot.x += 1.5
     handRot.order = "YZX"
+    if(handRot.x !== 0){
+      handRot.x += 1.5
+    }
     this.handOrb.object3D.setRotationFromEuler(handRot);
+
+    if (this.bDown){
+
+    }
   },
 });
 
@@ -74,6 +95,25 @@ AFRAME.registerComponent("fireable", {
     bullet.appendChild(bulletShader);
     document.querySelector("a-scene").appendChild(bullet);
   },
+});
+
+AFRAME.registerComponent('collider-check', {
+  dependencies: ['raycaster'],
+
+  init: function () {
+    this.hand = document.querySelector("#RightHand")
+    this.el.addEventListener('raycaster-intersected', (e) => {
+      this.el.setAttribute("material", "shader: flat;color: #0076ff")
+      this.hand.components["gun-code"].selectedSwitch = this.el.id
+    });
+    this.el.addEventListener('raycaster-intersected-cleared', (e) => {
+      this.el.setAttribute("material", "shader: flat;color: #000000")
+      if(this.hand.components["gun-code"].selectedSwitch === this.el.id)
+      {
+        this.hand.components["gun-code"].selectedSwitch = ""
+      }
+    });
+  }
 });
 
 AFRAME.registerComponent("display-plate", {

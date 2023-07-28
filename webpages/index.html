@@ -223,8 +223,7 @@
           gltf-model="#gunmodel"
           scale="0.1 0.1 0.1"
           id="thegun"
-          height="0.5"
-        >
+          height="0.5">
           <a-plane
             material="shader: flat;"
             id="displayplate"
@@ -244,9 +243,44 @@
               width="2.8"
             >
             </a-plane>
-          </a-plane> </a-entity
-        >>
+          </a-plane>
+          <a-entity raycaster="objects: .selectable; showLine:true;"  rotation="180 0 0"></a-entity>
+        </a-entity>
         <a-entity mixin="shadow" position=" 0 0.01 0"> </a-entity>
+      </a-entity>
+
+      <a-entity id="gunWheel" rotation="0 0 54" position="-100 -100 -100" animation="property: scale; to: 0 0 1; dur: 250; easing: easeInOutCubic; loop: false">
+        <a-circle material="shader: flat;" position="0 0 -1">
+          <a-entity
+                   id="0" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                    material="shader: flat;color: #100000" rotation="0 0 0" position="0 0 0.01"></a-entity>
+          <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
+                    material="shader: flat;color: #FFFFFF" rotation="0 0 0" position="0 0 0.01"></a-entity>
+
+          <a-entity
+                  id="1" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                    material="shader: flat;color: #000000" rotation="0 0 72" position="0 0 0.01"></a-entity>
+          <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
+                    material="shader: flat;color: #FFFFFF" rotation="0 0 72" position="0 0 0.01"></a-entity>
+
+          <a-entity
+                  id="2" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                    material="shader: flat;color: #000000" rotation="0 0 144" position="0 0 0.01"></a-entity>
+          <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
+                    material="shader: flat;color: #FFFFFF" rotation="0 0 144" position="0 0 0.01"></a-entity>
+
+          <a-entity
+                  id="3" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                    material="shader: flat;color: #000000" rotation="0 0 216" position="0 0 0.01"></a-entity>
+          <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
+                    material="shader: flat;color: #FFFFFF" rotation="0 0 216" position="0 0 0.01"></a-entity>
+
+          <a-entity
+                  id="4" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                    material="shader: flat;color: #000000" rotation="0 0 288" position="0 0 0.01"></a-entity>
+          <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
+                    material="shader: flat;color: #FFFFFF" rotation="0 0 288" position="0 0 0.01"></a-entity>
+        </a-circle>
       </a-entity>
     </a-scene>
   </body>
