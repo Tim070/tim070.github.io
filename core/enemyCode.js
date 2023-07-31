@@ -71,6 +71,7 @@ AFRAME.registerComponent("friendly-bullet", {
 AFRAME.registerComponent("build-enemy", {
     schema: { enemyName: {type: "string"}, health: {type: "number"} },
     init: function () {
+        this.el.setAttribute("enemyGunStorage", "")
         this.el.setAttribute("enemy", "health:" + this.data.health.toString() + "; healthbar:Enhealthbar" + this.data.enemyName)
         this.el.setAttribute("class","enemy")
         this.el.setAttribute("fireable", "friendly: false; origin:Enhead" + this.data.enemyName)
