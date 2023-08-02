@@ -3,6 +3,7 @@
   <head>
     <title>JS2</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-geometry-merger-component/dist/aframe-geometry-merger-component.min.js"></script>
     <script src="../classes/guns_handler.js" ></script>
     <script src="../core/gameloop.js"></script>
     <script src="../core/colider.js"></script>
@@ -16,7 +17,7 @@
     <script src="../core/loco.js"></script>
   </head>
   <body>
-    <a-scene setup-world nav-mesh-strategy>
+    <a-scene setup-world nav-mesh-strategy stats background="color: #B0FDFD">
       <a-assets>
         <a-asset-item id="gunmodel" src="../models/gun.glb"></a-asset-item>
 
@@ -41,7 +42,7 @@
         ></a-mixin>
         <a-mixin
           id="shadow"
-          geometry="primitive: circle; radius:0.5"
+          geometry="primitive: plane; radius:0.5"
           rotation="-90 0 0"
           material="shader: flat; color:#000000; transparent:true; opacity:0.2"
         >
@@ -151,7 +152,6 @@
           height="90"
           material="shader:flat;"
         ></a-plane>
-        <a-sky color="#B0FDFD"></a-sky>
 
         <a-plane
           position="90 0 0"
@@ -250,7 +250,7 @@
         <a-entity mixin="shadow" position=" 0 0.01 0"> </a-entity>
       </a-entity>
 
-      <a-entity id="gunWheel" rotation="0 0 54" position="-100 -100 -100" animation="property: scale; to: 0 0 1; dur: 250; easing: easeInOutCubic; loop: false">
+      <a-entity id="gunWheel" rotation="0 0 54" position=" 75 2 75 " animation="property: scale; to: 1 1 1; dur: 250; easing: easeInOutCubic; loop: false">
         <a-circle material="shader: flat;" position="0 0 -1">
           <a-entity
                    id="0" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"

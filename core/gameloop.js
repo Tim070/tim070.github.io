@@ -70,6 +70,7 @@ AFRAME.registerComponent("fireable", {
   },
   fire: async function (inputParams)
   {
+    return //TODO
     this.gunToShoot = (this.el.components["gun-code"] === undefined ? this.el.components["enemyGunStorage"].equipedGun : this.el.components["gun-code"].equipedGun);
     for (let i = 0; i < this.gunToShoot.burst; i++)
     {
