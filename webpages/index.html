@@ -250,8 +250,9 @@
         <a-entity mixin="shadow" position=" 0 0.01 0"> </a-entity>
       </a-entity>
 
-      <a-entity id="gunWheel" rotation="0 0 54" position="-100 -100 -100" animation="property: scale; to: 0 0 1; dur: 250; easing: easeInOutCubic; loop: false">
-        <a-circle material="shader: flat;" scale="0.2 0.2 0.2">
+<!--      animation="property: scale; to: 0 0 1; dur: 250; easing: easeInOutCubic; loop: false"-->
+      <a-entity id="gunWheel" rotation="0 0 54" position="-100 -100 -100">
+        <a-circle material="shader: flat;" position="0 0 -1" scale="0.2 0.2 0.2">
           <a-entity
                    id="0" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
                     material="shader: flat;color: #100000" rotation="0 0 0" position="0 0 0.01"></a-entity>

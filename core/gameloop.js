@@ -31,19 +31,14 @@ AFRAME.registerComponent("gun-code", {
     this.selectedSwitch = "0";
 
     this.el.addEventListener("bbuttondown", (e) => {
-      console.log("pos before")
-      console.log(this.gunwheel.object3D.position)
-      console.log(this.hand.object3D.position)
       this.gunwheel.object3D.position.setFromMatrixPosition(this.hand.object3D.matrixWorld);
-      console.log("pos after")
-      console.log(this.gunwheel.object3D.position)
-      console.log(this.hand.object3D.position)
-      this.gunwheel.components.animation.animation.reverse();
-      this.gunwheel.components.animation.animation.play();
+      // this.gunwheel.components.animation.animation.reverse();
+      // this.gunwheel.components.animation.animation.play();
     });
     this.el.addEventListener("bbuttonup", (e) => {
-      this.gunwheel.components.animation.animation.reverse();
-      this.gunwheel.components.animation.animation.play();
+      this.gunwheel.object3D.position.y = -50
+      // this.gunwheel.components.animation.animation.reverse();
+      // this.gunwheel.components.animation.animation.play();
       if(this.selectedSwitch !== "" && this.selectedSwitch !== this.equipedGun){
         this.equipedGun = this.gunsHandler.getGun(+this.selectedSwitch)
         console.log(this.equipedGun.name)
