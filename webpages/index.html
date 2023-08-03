@@ -20,17 +20,18 @@
     <a-scene setup-world nav-mesh-strategy stats background="color: #B0FDFD">
       <a-assets>
         <a-asset-item id="gunmodel" src="../models/gun.glb"></a-asset-item>
+        <a-asset-item id="enemyModel" src="../models/enemyglb.glb"></a-asset-item>
 
         <a-mixin
           geometry="primitive: box; width: 5; height:5; depth: 5;"
           ofset-wall
-          material="roughness: 1.0"
+          material="visible: false;"
           id="wall"
         ></a-mixin>
         <a-mixin
           geometry="primitive: box; width: 5; height:2.5; depth: 5;"
           ofset-wall
-          material="roughness: 1.0"
+          material="visible: false;"
           id="halfwall"
         ></a-mixin>
         <a-mixin
@@ -51,146 +52,154 @@
 
       <a-entity id="world">
         <a-box
-          position="-20 10 -20"
+          position="-20 -1000 -20"
           width="10"
           height="20"
           depth="10"
           material="side:double"
           color="#000000"
         >
-          <a-text value="You died!" align="center" position="0 3 -4.9">
-            <a-box
-              position="0 -2 -1"
-              depth="2"
-              width="3"
-              color="#333333"
-              class="restartButton"
-            >
-              <a-text
-                position="0 0 1.1"
-                value="Restart"
-                align="center"
-                wrap-count="20"
-                class="restartButton"
-              ></a-text>
-            </a-box>
-          </a-text>
+          <a-entity geometry-merger="preserveOriginal: false" material="color:#992815;">
 
-          <a-text
-            value="You died!"
-            align="center"
-            position="0 3 4.9"
-            rotation="0 180 0"
-          >
-            <a-box
-              position="0 -2 -1"
-              depth="2"
-              width="3"
-              color="#333333"
-              class="restartButton"
-            >
-              <a-text
-                position="0 0 1.1"
-                value="Restart"
-                align="center"
-                wrap-count="20"
+            <a-text value="You died!" align="center" position="0 3 -4.9">
+              <a-box
+                position="0 -2 -1"
+                depth="2"
+                width="3"
+                color="#333333"
                 class="restartButton"
-              ></a-text>
-            </a-box>
-          </a-text>
-          <a-text
-            value="You died!"
-            align="center"
-            position="-4.9 3 0"
-            rotation="0 90 0"
-          >
-            <a-box
-              position="0 -2 -1"
-              depth="2"
-              width="3"
-              color="#333333"
-              class="restartButton"
+              >
+                <a-text
+                  position="0 0 1.1"
+                  value="Restart"
+                  align="center"
+                  wrap-count="20"
+                  class="restartButton"
+                ></a-text>
+              </a-box>
+            </a-text>
+            <a-text
+              value="You died!"
+              align="center"
+              position="0 3 4.9"
+              rotation="0 180 0"
             >
-              <a-text
-                position="0 0 1.1"
-                value="Restart"
-                align="center"
-                wrap-count="20"
+              <a-box
+                position="0 -2 -1"
+                depth="2"
+                width="3"
+                color="#333333"
                 class="restartButton"
-              ></a-text>
-            </a-box>
-          </a-text>
-          <a-text
-            value="You died!"
-            align="center"
-            position="4.9 3 0"
-            rotation="0 270 0"
-          >
-            <a-box
-              position="0 -2 -1"
-              depth="2"
-              width="3"
-              color="#333333"
-              class="restartButton"
+              >
+                <a-text
+                  position="0 0 1.1"
+                  value="Restart"
+                  align="center"
+                  wrap-count="20"
+                  class="restartButton"
+                ></a-text>
+              </a-box>
+            </a-text>
+            <a-text
+              value="You died!"
+              align="center"
+              position="-4.9 3 0"
+              rotation="0 90 0"
             >
-              <a-text
-                position="0 0 1.1"
-                value="Restart"
-                align="center"
-                wrap-count="20"
+              <a-box
+                position="0 -2 -1"
+                depth="2"
+                width="3"
+                color="#333333"
                 class="restartButton"
-              ></a-text>
-            </a-box>
-          </a-text>
+              >
+                <a-text
+                  position="0 0 1.1"
+                  value="Restart"
+                  align="center"
+                  wrap-count="20"
+                  class="restartButton"
+                ></a-text>
+              </a-box>
+            </a-text>
+            <a-text
+              value="You died!"
+              align="center"
+              position="4.9 3 0"
+              rotation="0 270 0"
+            >
+              <a-box
+                position="0 -2 -1"
+                depth="2"
+                width="3"
+                color="#333333"
+                class="restartButton"
+              >
+                <a-text
+                  position="0 0 1.1"
+                  value="Restart"
+                  align="center"
+                  wrap-count="20"
+                  class="restartButton"
+                ></a-text>
+              </a-box>
+            </a-text>
+          </a-entity>
         </a-box>
 
-        <a-plane
-          position="90 -0 50"
-          color="#009815"
-          rotation="-90 0 0"
-          width="170"
-          height="90"
-          material="shader:flat;"
-        ></a-plane>
 
-        <a-plane
-          position="90 0 0"
-          color="#4FB24F"
-          rotation="0 0 -90"
-          width="10"
-          height="180"
-          material="shader:flat; "
-        ></a-plane>
-        <a-plane
-          position="90 0 100"
-          color="#4FB24F"
-          rotation="0 0 90"
-          width="10"
-          height="180"
-          material="shader:flat; side:back;"
-        ></a-plane>
-        <a-plane
-          position="0 0 50"
-          color="#65C175"
-          rotation="0 -90 0"
-          width="100"
-          height="10"
-          material="shader:flat; side:back;"
-        ></a-plane>
-        <a-plane
-          position="180 0 50"
-          color="#65C175"
-          rotation="0 90 0"
-          width="100"
-          height="10"
-          material="shader:flat; side:back;"
-        ></a-plane>
+        <a-entity geometry-merger="preserveOriginal: false" material="color:#009815">
+          <a-plane
+            position="90 -0 50"
+            color="#009815"
+            rotation="-90 0 0"
+            width="170"
+            height="90"
+            material="shader:flat;"
+          ></a-plane>
+
+
+
+          <a-plane
+            position="90 0 -0.1"
+            color="#4FB24F"
+            rotation="0 0 -90"
+            width="10"
+            height="180.2"
+            material="shader:flat; "
+          ></a-plane>
+          <a-plane
+            position="90 0 100.1"
+            color="#4FB24F"
+            rotation="0 0 90"
+            width="10"
+            height="180.2"
+            material="shader:flat; side:back;"
+          ></a-plane>
+          <a-plane
+            position="-0.1 0 50"
+            color="#65C175"
+            rotation="0 -90 0"
+            width="100.2"
+            height="10"
+            material="shader:flat; side:back;"
+          ></a-plane>
+          <a-plane
+            position="180.1 0 50"
+            color="#65C175"
+            rotation="0 90 0"
+            width="100.2"
+            height="10"
+            material="shader:flat; side:back;"
+          ></a-plane>
+        </a-entity>
 
         <a-light type="ambient" color="#B0FDFD"></a-light>
-        <a-light type="point" intensity="0.5" position="0 0 100"></a-light>
-        <a-light type="point" intensity="0.5" position="0 0 -100"></a-light>
-      </a-entity>
+        <a-light type="point" intensity="0.5" position="0 0 1000"></a-light>
+        <a-light type="point" intensity="0.5" position="0 0 -1000"></a-light>
 
+      </a-entity>
+      <a-entity id="wallWorld"></a-entity>
       <a-entity
         gravity="strength: 18"
         id="playerEntity"
@@ -245,7 +254,7 @@
             >
             </a-plane>
           </a-plane>
-          <a-entity raycaster="objects: .selectable; showLine:true;"  rotation="180 0 0"></a-entity>
+          <a-entity raycaster="objects: .selectable; showLine:false;"  rotation="180 0 0"></a-entity>
         </a-entity>
         <a-entity mixin="shadow" position=" 0 0.01 0"> </a-entity>
       </a-entity>
@@ -256,32 +265,36 @@
           <a-entity
                    id="0" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
                     material="shader: flat;color: #100000" rotation="0 0 0" position="0 0 0.01"></a-entity>
+          <a-entity
+                  id="1" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                  material="shader: flat;color: #000000" rotation="0 0 72" position="0 0 0.01"></a-entity>
+          <a-entity
+                  id="2" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                  material="shader: flat;color: #000000" rotation="0 0 144" position="0 0 0.01"></a-entity>
+          <a-entity
+                  id="3" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                  material="shader: flat;color: #000000" rotation="0 0 216" position="0 0 0.01"></a-entity>
+          <a-entity
+                  id="4" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
+                  material="shader: flat;color: #000000" rotation="0 0 288" position="0 0 0.01"></a-entity>
+
+          <a-entity geometry-merger="preserveOriginal: false"material="shader: flat;color: #FFFFFF">
+
           <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
                     material="shader: flat;color: #FFFFFF" rotation="0 0 0" position="0 0 0.01"></a-entity>
 
-          <a-entity
-                  id="1" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
-                    material="shader: flat;color: #000000" rotation="0 0 72" position="0 0 0.01"></a-entity>
           <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
                     material="shader: flat;color: #FFFFFF" rotation="0 0 72" position="0 0 0.01"></a-entity>
 
-          <a-entity
-                  id="2" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
-                    material="shader: flat;color: #000000" rotation="0 0 144" position="0 0 0.01"></a-entity>
           <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
                     material="shader: flat;color: #FFFFFF" rotation="0 0 144" position="0 0 0.01"></a-entity>
 
-          <a-entity
-                  id="3" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
-                    material="shader: flat;color: #000000" rotation="0 0 216" position="0 0 0.01"></a-entity>
           <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
                     material="shader: flat;color: #FFFFFF" rotation="0 0 216" position="0 0 0.01"></a-entity>
 
-          <a-entity
-                  id="4" class="selectable" collider-check geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 72; thetaStart: 0"
-                    material="shader: flat;color: #000000" rotation="0 0 288" position="0 0 0.01"></a-entity>
           <a-entity geometry="primitive: ring; radiusInner: 0.35; radiusOuter: 0.95; thetaLength: 2; thetaStart: 0"
                     material="shader: flat;color: #FFFFFF" rotation="0 0 288" position="0 0 0.01"></a-entity>
+          </a-entity>
         </a-circle>
       </a-entity>
     </a-scene>

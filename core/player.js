@@ -12,7 +12,7 @@ AFRAME.registerComponent("player", {
             if (this.health === 0)
             {
                 this.el.object3D.position.x = -20
-                this.el.object3D.position.y = 10
+                this.el.object3D.position.y = -1000
                 this.el.object3D.position.z = -20
             }
         });

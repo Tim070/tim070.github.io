@@ -31,6 +31,22 @@ AFRAME.registerComponent("look-at-obj", {
     },
 });
 
+AFRAME.registerComponent("turn-to-obj", {
+    schema: { type: "string" },
+
+    init: function () {
+        this.objToLookAt = document.querySelector("#" + this.data);
+    },
+    tick: function () {
+        const placeToLookTo = new THREE.Vector3();
+        this.objToLookAt.object3D.getWorldPosition(placeToLookTo)
+        const placeToLookFrom = new THREE.Vector3();
+        this.el.object3D.getWorldPosition(placeToLookFrom)
+        placeToLookTo.y = placeToLookFrom.y
+        this.el.object3D.lookAt(placeToLookTo)
+    },
+});
+
 AFRAME.registerComponent("auto-shoot", {
     schema: { delay: {type: "number"} },
     init: function () {
@@ -89,40 +105,58 @@ AFRAME.registerComponent("build-enemy", {
         HB.setAttribute("width", "2.8")
         this.el.appendChild(HB)
 
-        const CL = document.createElement("a-cylinder")
-        CL.setAttribute("color", "#999999")
-        CL.setAttribute("radius", "0.4")
-        CL.setAttribute("height", "1.5")
-        CL.setAttribute("position", "0 -0.5 0")
-        CL.setAttribute("class", "enemy")
-        this.el.appendChild(CL)
+        const ENM = document.createElement("a-entity")
+        ENM.setAttribute("class","enemy")
+        ENM.setAttribute("gltf-model","#enemyModel")
+        ENM.setAttribute("turn-to-obj","playercamera")
+        ENM.object3D.position.y = -1.5
+        ENM.object3D.scale.x = 0.5
+        ENM.object3D.scale.y = 0.5
+        ENM.object3D.scale.z = 0.5
+        this.el.appendChild(ENM)
 
-        const SP = document.createElement("a-sphere")
-        SP.setAttribute("look-at-obj","playercamera")
-        SP.setAttribute("radius", "0.5")
-        SP.setAttribute("position", "0 0.65 0")
-        SP.setAttribute("color", "#999999")
-        SP.setAttribute("class", "enemy")
-        SP.id = "Enhead" + this.data.enemyName
-        this.el.appendChild(SP)
+        const ORG = document.createElement("a-entity")
+        ORG.object3D.position.y += 4
+        ORG.id = "Enhead" + this.data.enemyName
+        ORG.setAttribute("look-at-obj","playercamera")
 
-        const LE = document.createElement("a-sphere")
-        const RE = document.createElement("a-sphere")
-        LE.setAttribute("scale", "0.1 0.2 0.1")
-        RE.setAttribute("scale", "0.1 0.2 0.1")
-        LE.setAttribute("color", "#000000")
-        RE.setAttribute("color", "#000000")
-        LE.setAttribute("material", "shader:flat")
-        RE.setAttribute("material", "shader:flat")
-        LE.setAttribute("position", "-0.15 0.1 0.5")
-        RE.setAttribute("position", "0.15 0.1 0.5")
-        SP.appendChild(LE)
-        SP.appendChild(RE)
+        ENM.appendChild(ORG)
 
-        const SH = document.createElement("a-entity")
-        SH.setAttribute("mixin", "shadow")
-        SH.setAttribute("position", "0 -1.4 0")
-        this.el.appendChild(SH)
+        // const CL = document.createElement("a-cylinder")
+        // CL.setAttribute("color", "#999999")
+        // CL.setAttribute("radius", "0.4")
+        // CL.setAttribute("height", "1.5")
+        // CL.setAttribute("position", "0 -0.5 0")
+        // CL.setAttribute("class", "enemy")
+        // this.el.appendChild(CL)
+
+        // const SP = document.createElement("a-sphere")
+        // SP.setAttribute("look-at-obj","playercamera")
+        // SP.setAttribute("radius", "0.5")
+        // SP.setAttribute("position", "0 0.65 0")
+        // SP.setAttribute("color", "#999999")
+        // SP.setAttribute("class", "enemy")
+        // SP.id = "Enhead" + this.data.enemyName
+        // this.el.appendChild(SP)
+        //
+        // const LE = document.createElement("a-sphere")
+        // const RE = document.createElement("a-sphere")
+        // LE.setAttribute("scale", "0.1 0.2 0.1")
+        // RE.setAttribute("scale", "0.1 0.2 0.1")
+        // LE.setAttribute("color", "#000000")
+        // RE.setAttribute("color", "#000000")
+        // LE.setAttribute("material", "shader:flat")
+        // RE.setAttribute("material", "shader:flat")
+        // LE.setAttribute("position", "-0.15 0.1 0.5")
+        // RE.setAttribute("position", "0.15 0.1 0.5")
+        //
+        // SP.appendChild(LE)
+        // SP.appendChild(RE)
+        //
+        // const SH = document.createElement("a-entity")
+        // SH.setAttribute("mixin", "shadow")
+        // SH.setAttribute("position", "0 -1.4 0")
+        // this.el.appendChild(SH)
     },
 });
 
